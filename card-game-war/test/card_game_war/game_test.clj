@@ -31,4 +31,22 @@
       ; expected output
       {:winner "Player 1",
        :cards [[2 :spade] [:ace :diamond] [2 :club] [:ace :heart]]} ))) )
+;
+;     start
+;
+;     :p1[ [2 :spade] [:ace :heart]  ]
+;     :p2[ [2 :club] [:ace :diamond] ]
+;
+;     :p1[ [:ace :diamond] [:ace :heart] [2 :spade] ]
+;     :p2[                               [2 :club]  ]
+;
+;     :p1[ [:ace :diamond] [:ace :heart] ]
+;     :p2[ [2 :spade]      [2 :club]     ]
+;
+;     :p1[ [2 :club] [:ace :heart] [:ace :diamond] ]
+;     :p2[                         [2 :spade]      ]
+;
+;     :p1[ [2 :spade] [:ace :diamond] [2 :club] [:ace :heart] ]   <-- winner
+;     :p2[]
+;
 
