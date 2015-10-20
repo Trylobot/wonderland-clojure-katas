@@ -21,17 +21,23 @@
     (let [deck (shuffle cards)]
         [(take-nth 1 deck) (take-nth 1 (rest deck))] ) )
 
-(defn play-round [deck-p1 deck-p2]
-    (let [card-p1 (peek deck-p1)
-          card-p2 (peek deck-p2)]
+(defn play-round [game]
+    (let [deck-p1 (game 0) 
+          deck-p2 (game 1)
+          card-p1 (peek deck-p1)
+          card-p2 (peek deck-p2)
+          new-deck-p1 (pop deck-p1)
+          new-deck-p2 (pop deck-p2)]
     (if (compare-cards card-p1 card-p2)
-        [(into [card-p2] deck-p1)  (pop deck-p2)]
-        [(pop deck-p1)  (into [card-p1] deck-p2)]) ))
+        [(into [card-p2 card-p1] new-deck-p1) new-deck-p2]
+        [new-deck-p1 (into [card-p1 card-p2] new-deck-p2)]) ))
 
-(defn play-game [deck-p1 deck-p2]
+(defn play-game [game]
+    (let [deck-p1 (game 0) 
+          deck-p2 (game 1)]
     (cond 
         (= 0 (count deck-p2)) {:winner "Player 1", :cards deck-p1}
         (= 0 (count deck-p1)) {:winner "Player 2", :cards deck-p2}
-        :else nil ) )
+        :else (recur (play-round game)) )))
 
 
