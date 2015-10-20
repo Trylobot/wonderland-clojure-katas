@@ -6,7 +6,14 @@
 ;; fill in  tests for your game
 (deftest test-play-round
   (testing "the highest rank wins the cards in the round"
-    (is (= 0 1)))
+    (is (= 
+      ; expected
+      [ [[:ace :diamond] [2 :spade] [:ace :heart]]
+        [[ 2   :club]] ]
+      ; actual
+      (apply play-round
+        [ [[2 :spade] [:ace :heart  ]]
+          [[2 :club ] [:ace :diamond]] ] ) )) )
   (testing "queens are higher rank than jacks")
   (testing "kings are higher rank than queens")
   (testing "aces are higher rank than kings")
