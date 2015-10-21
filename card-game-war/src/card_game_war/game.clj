@@ -19,7 +19,7 @@
 
 (defn create-game []
     (let [deck (shuffle cards)]
-        [(take-nth 1 deck) (take-nth 1 (rest deck))] ) )
+        [(vec (take-nth 1 deck)) (vec (take-nth 1 (rest deck)))] ) )
 
 (defn play-round [game]
     (let [deck-p1 (game 0) 

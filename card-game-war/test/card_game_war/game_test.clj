@@ -14,12 +14,18 @@
       ; expected output
       [ [[:ace :diamond] [:ace :heart] [2 :spade]]
         [[2 :club]] ] )) )
-  (testing "queens are higher rank than jacks")
-  (testing "kings are higher rank than queens")
-  (testing "aces are higher rank than kings")
-  (testing "if the ranks are equal, clubs beat spades")
-  (testing "if the ranks are equal, diamonds beat clubs")
-  (testing "if the ranks are equal, hearts beat diamonds") )
+  (testing "queens are higher rank than jacks"
+    (is (compare-cards [:queen :club] [:jack :club])))
+  (testing "kings are higher rank than queens"
+    (is (compare-cards [:king :club] [:queen :club])))
+  (testing "aces are higher rank than kings"
+    (is (compare-cards [:ace :club] [:king :club])))
+  (testing "if the ranks are equal, clubs beat spades"
+    (is (compare-cards [:queen :club] [:queen :spade])))
+  (testing "if the ranks are equal, diamonds beat clubs"
+    (is (compare-cards [:queen :diamond] [:queen :club])))
+  (testing "if the ranks are equal, hearts beat diamonds"
+    (is (compare-cards [:queen :heart] [:queen :diamond]))) )
 
 (deftest test-play-game
   (testing "the player loses when they run out of cards"
